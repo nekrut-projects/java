@@ -110,13 +110,13 @@ public class SecondLesson {
     * в котором сумма левой и правой части массива равны.
     * */
     public static boolean checkBalance(int[] array) {
-        int sumElementsArray = 0;
         for (int i = 0; i < array.length; i++) {
-            sumElementsArray += array[i];
-        }
-        if (sumElementsArray == 0) {
-            System.out.println("Пустой одномерный целочисленный массив");
-            return false;
+            if (array[i] != 0) {
+                break;
+            } else if (i == array.length - 1) {
+                System.out.println("Пустой одномерный целочисленный массив");
+                return false;
+            }
         }
 
         int leftPartArray = array[0];
