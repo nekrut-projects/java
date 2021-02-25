@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/fxml" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Exit" onAction="#onClickExit"/>
+            </Menu>
+            <Menu text="Edit" /><Menu />
+        </MenuBar>
+    </top>
+    <center>
+        <TextArea fx:id="textArea" editable="false" />
+    </center>
+    <bottom>
+        <HBox spacing="3">
+            <TextField fx:id="textField" onAction="#onClickSend" HBox.hgrow="ALWAYS" />
+            <Button onAction="#onClickSend" text="Send" />
+             <padding>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+             </padding>
+        </HBox>
+    </bottom>
+</BorderPane>
