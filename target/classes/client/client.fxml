@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox
-      xmlns="http://javafx.com/javafx/8.0.202-ea"
-      xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="client.ClientController"
-            prefHeight="400.0" prefWidth="600.0">
+<HBox xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="client.Controller" prefHeight="400.0" prefWidth="600.0">
     <VBox HBox.hgrow="ALWAYS">
-        <ListView fx:id="cListView"></ListView>
+        <ListView fx:id="cListView" ></ListView>
         <TextField fx:id="cTextField" onAction="#upload"></TextField>
     </VBox>
     <VBox>
-        <Button fx:id="outButton" onAction="#upload">">>>"</Button>
-        <Button fx:id="inButton" onAction="#download">"\\\\"</Button>
+        <Button fx:id="downloadButton" onAction="#download" text="Download"/>
+        <Button fx:id="uploadButton" onAction="#upload" text="Upload"/>
     </VBox>
     <VBox HBox.hgrow="ALWAYS">
         <ListView fx:id="sListView"></ListView>
