@@ -2,18 +2,20 @@ package client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import shared.Marker;
 
 public class Network {
 
     private SocketChannel socketChannel;
 
-    public Network() {
+    public Network(Callback callback) {
         new Thread(() -> {
             EventLoopGroup worker = new NioEventLoopGroup();
             try {
@@ -25,9 +27,7 @@ public class Network {
                             protected void initChannel(SocketChannel ch) throws Exception {
                                 socketChannel = ch;
                                 ch.pipeline().addLast(
-//                                        new ObjectEncoder(),
-//                                        new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
-                                        new ClientMessageHandler()
+                                        new ClientMessageHandler(callback)
                                 );
                             }
                         });
@@ -35,7 +35,6 @@ public class Network {
                 channelFuture.channel().closeFuture().sync(); // block
             } catch (Exception e) {
                 e.printStackTrace();
-//                log.error("e = ", e);
             } finally {
                 worker.shutdownGracefully();
             }
@@ -44,6 +43,9 @@ public class Network {
 
     public void sendMessage(ByteBuf message) {
         socketChannel.writeAndFlush(message);
+    }
+    public void requestListFiles(){
+        sendMessage(Unpooled.buffer().writeByte(Marker.SEND_LIST_FILES.getValue()));
     }
 
 }
