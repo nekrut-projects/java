@@ -1,0 +1,3 @@
+[submodule "gb.spring"]
+	path = gb.spring
+	url = https://github.com/nekrut-projects/gb.spring.git
